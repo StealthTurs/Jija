@@ -904,3 +904,133 @@ void PrintMarks() {
 		cout << "Ошибка отрытия буферного файла!" << endl;
 	reading.close();
 }
+void Check2() {
+	ifstream reading("KoafMarks1.txt");
+	ofstream record("KoafMarks.txt", ios::out | ios::end);
+	if (reading) {
+		if (record) {
+			int RecordBook, n, kol, ObshOcenki = 0, _25procentov = 0 ;
+			reading >> n;
+			record << n << endl;
+			for (int i = 0; i < n; i++) {
+				reading >> RecordBook;
+				record << RecordBook << endl;
+				reading >> kol;
+				ObshOcenki = 9 * kol;
+				_25procentov = ObshOcenki * 0.25;
+				record << kol << endl;
+				record << ObshOcenki << endl;
+				record << _25procentov << endl;
+			}
+		}
+		else
+			cout << "Ошибка записи в файл" << endl;
+	}
+	else
+		cout << "Ошибка отрытия буферного файла!" << endl;
+	reading.close();
+	record.close();
+	remove("KoafMarks1.txt");
+}
+void Check1() {
+	ifstream reading("Marks.txt");
+	ofstream record("KoafMarks1.txt", ios::out | ios::end);
+	if (reading) {
+		if (record) {
+			string _surnameF, _surnameI, _surnameO, Lesson;
+			int RecordBook, _RecordBook;
+			int n;
+			int  _marks, kol;
+			reading >> n;
+			record << n << endl;
+			for (int i = 0; i < n; i++) {
+				reading >> RecordBook;
+				record << RecordBook << endl;
+				reading >> _surnameF;
+				reading >> _surnameI;
+				reading >> _surnameO;
+				reading >> kol;
+				record << kol << endl;
+				for (int j = 0; j < kol; j++) {
+					reading >> Lesson;
+					for (int g = 0; g < 9; g++) {
+						reading >> _marks;
+					}
+				}
+			}
+		}
+		else
+			cout << "Ошибка записи в файл" << endl;
+	}
+	else
+		cout << "Ошибка отрытия буферного файла!" << endl;
+	reading.close();
+	record.close();
+	Check2();
+}
+void Podschet25proc3ek() {
+	ifstream reading("KoafMarks.txt");
+	ifstream _reading("Marks.txt");
+	ifstream read("Podhodashie3(Prom).txt");
+	ifstream _read("Podhodashie3.txt");
+	ofstream record("Podhodashie3.txt", ios::out | ios::end);
+	ofstream _record("Podhodashie3(Prom).txt", ios::out | ios::end);
+	if (reading) {
+		if (record) {
+			if (_reading) {
+				int RecordBook, _RecordBook, n, n1, kol, ObshOcenki = 0, _25procentov = 0, _marks, t = 0;
+				string _surnameF, _surnameI, _surnameO, Lesson;
+				reading >> n;
+				_reading >> n1;
+				for (int i = 0; i < n1; i++) {
+					t = 0;
+					_reading >> _RecordBook;
+					_reading >> _surnameF;
+					_reading >> _surnameI;
+					_reading >> _surnameO;
+					_reading >> kol;
+					for (int j = 0; i < kol; j++) {
+						_reading >> Lesson;
+						for (int g = 0; g < 9; g++) {
+							_reading >> _marks;
+							if (_marks == 3) {
+								t++;
+							}
+						}
+					}
+					_record << _RecordBook << endl;
+					_record << t << endl;
+				}
+				record << n << endl;
+				for (int f = 0; f < n; f++) {
+					read >> RecordBook;
+					record << RecordBook << endl;
+					read >> t;
+					record << t << endl;
+				}
+				
+				_read >> n;
+				for (int b = 0; b < n; b++) {
+					_read >> RecordBook;
+
+					_read >> t;
+					if ( )
+				}
+
+
+			}
+			else
+				cout << "Ошибка чтения файла" << endl;
+		}
+		else
+			cout << "Ошибка записи в файл" << endl;
+	}
+	else
+		cout << "Ошибка открытия буферного файла" << endl;
+	reading.close();
+	_reading.close();
+	read.close();
+	_read.close();
+	record .close();
+	_record.close();
+}
